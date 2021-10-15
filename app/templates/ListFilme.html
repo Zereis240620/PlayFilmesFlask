@@ -1,0 +1,52 @@
+    {% extends 'base.html' %}
+    {% block content %}
+    <div class="container">
+      <div class="row">    
+          <a class="btn-floating black right" href='{{ url_for("cadFilme") }}'><i class="material-icons">add</i></a>
+          <div class="card darken-1">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th class="center">Excluir</th>
+                        <th class="center">Editar</th>
+                        <th>Nome</th>
+                        <th>Duracao</th>
+                        <th>Ano</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+
+                <tbody>                
+                    {% for dados in filmes.items %}
+                    <tr>
+                        <td class="center"><a href="/deleteFilme/{{dados.id}}" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">delete</i></a></td>                  
+                        <td class="center"><a href="/cadfilme/{{dados.id}}" class="btn-floating btn-medium waves-effect waves-light blue"><i class="material-icons">edit</i></a></td>                  
+                        <td>{{dados.nome}}</td>
+                        <td>{{dados.duracao}}</td>
+                        <td>{{dados.ano}}</td>
+                        <td>{{dados.category.descricao}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>                    
+            </table>  
+            <div class="center" id="pag">
+                <ul class="pagination">
+                    {% if filmes.has_prev %}                  
+                    
+                    <li class=""><a href="{{ url_for('listFilmesCad', page=filmes.prev_num) }}"><i class="material-icons left">chevron_left</i>Anterior</a></li>                 
+                    {% else %}
+                    <li class="disabled"><a href="#!"><i class="material-icons left">chevron_left</i>Anterior</a></li>
+                    {% endif %}
+
+
+                    {% if filmes.has_next %}                  
+                    <li class=""><a  href="{{ url_for('listFilmesCad', page=filmes.next_num) }}">Proxima<i class="material-icons right">chevron_right</i></a></li>
+                    {% else %}
+                    <li class="disabled"><a href="#!"><i class="material-icons right">chevron_right</i>Próxima</a></li>
+                    {% endif %}
+                </ul>
+            </div>  
+        </div>  
+    </div>
+</div>    
+{% endblock %}

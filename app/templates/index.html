@@ -1,0 +1,56 @@
+	
+{% extends 'base.html' %}
+
+{% block title %}{{super()}}- Index {% endblock %}
+
+{% block content %}		
+
+
+<!-- Conteudo  -->
+<div class="row" id="grid">
+	{% for filme in filmes.items%}							  
+	<div class="col s3" id="col-grid">
+		<div class="card">
+			<div class="card-image">
+				<img class="img-responsive" src="{{ url_for('static', filename='uploads/'+filme.capa) }}" alt="nome do filme" aria-label="Capa do Filme x" title="capa do filme">
+				
+			</div>
+			<div class="card-content">
+				<p style="font-weight: bold; color: #747373; display: flex; flex-wrap: wrap;">{{filme.nome}}</p>
+				<p style="color: grey;">{{filme.duracao}} <i class="material-icons left">timer</i></p>
+				<p style="color: grey;">{{filme.category.descricao}}</p>          
+
+				<div class="divider"></div>
+				<p style="font-size: 1.5em;" class="center">Resumo</p>
+				<ul style=" overflow-y: auto;">
+					<li><p class="blue-text center">{{filme.resumo if filme.resumo else 'Sem Resumo'}}</p></li>
+				</ul>
+			</div>
+			<div class="card-action center">
+				<a class="btn bt-visualizar black" href="/filme/{{filme.id}}" nid="{{filme}}">Ver <i class="material-icons right">remove_red_eye</i></a>
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+	<!-- <div id="modal" class="modal"> -->				
+	</div>		
+	
+	<div class="center">
+		<ul class="pagination">
+			{% if filmes.has_prev %}	              
+			
+			<li class=""><a href="{{ url_for('index', page=filmes.prev_num) }}"><i class="material-icons left">chevron_left</i>Anterior</a></li>	              
+			{% else %}
+			<li class="disabled"><a href="#!"><i class="material-icons left">chevron_left</i>Anterior</a></li>
+			{% endif %}
+
+
+			{% if filmes.has_next %}	              
+			<li class=""><a  href="{{ url_for('index', page=filmes.next_num) }}">Proxima<i class="material-icons right">chevron_right</i></a></li>
+			{% else %}
+			<li class="disabled"><a href="#!"><i class="material-icons right">chevron_right</i>Próxima</a></li>
+			{% endif %}
+		</ul>
+	</div>	
+	{% endblock %}

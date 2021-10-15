@@ -1,0 +1,56 @@
+	{% extends 'base.html' %}
+	{% block content %}
+
+	{% if nome %}
+	<p>nome</p>	
+	{% endif %}
+
+	<div class="container" style="margin-top: 5px;">			
+		<div class="row">		
+			<div class="card-content">		  		
+				<form action="/cadfilme/" enctype="multipart/form-data" method="POST">
+					{{form.csrf_token}}
+					{% if form.id.data %}
+					<label>ID do Filme</label>
+					{{form.id(class="form-control", placeholder="ID")}}
+					{% endif %}
+					
+					<label>Nome do Filme</label>
+					{{form.nome(class="form-control", placeholder="Nome")}}
+					
+					<label>Duração</label>
+					{{form.duracao(class="form-control", placeholder="Duração")}}
+					
+					<label>Ano</label>
+					{{form.ano(class="form-control", placeholder="Ano")}}
+					
+					<label>URL</label>
+					{{form.url(class="form-control", placeholder="URL")}}
+
+					<label>Resumo</label>
+					{{form.resumo( class="materialize-textarea",cols="35", rows="20",placeholder="Resumo")}}					
+					
+					<label>Categoria</label>
+					{{form.id_category(class="form-control", placeholder="Categoria")}}
+					
+					<label>Usuário</label>
+					{{form.id_user_cad(class="form-control", value=current_user.get_id(), placeholder="Capa")}}
+					
+					{% if(form.id.data is none) %}
+					<label>Arquivo</label>										
+					{{form.capa(class="file-path validate", placeholder="Capa")}}	
+					{% endif %}
+					
+					<div class="center">
+						<button class="btn waves-effect waves-white black" type="submit">Cadastrar</button>
+						<a href="{{url_for('listFilmesCad')}}" class="btn waves-effect waves-white black">
+							Voltar
+						</a>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	{% endblock %}

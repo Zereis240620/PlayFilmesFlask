@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+	<title>{% block title %}PlayFilmes{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">   
+
+</head>
+
+<body>
+	<header>
+
+		<nav>	
+			<div class="nav-wrapper black">
+				<a  class="brand-logo" id="text" href="{{ url_for('index') }}">PlayFilmesFlask</a>                    
+
+				<ul class="right hide-on-med-and-down">
+					
+					{% if current_user.is_authenticated %}
+					<li><a  href="{{ url_for('logout') }}">Deslogar</a></li>                
+					<li><a href="{{ url_for('listFilmesCad') }}">Listar Filmes</a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}" >Logar</a></li>
+					{% endif %} 				      			
+				</ul>    	  
+				
+				<ul id="slide-out" class="sidenav">
+					{% if current_user.is_authenticated %}
+
+					<li><a  href="{{ url_for('logout') }}"><i class="material-icons left">power_settings_new</i>Deslogar</a></li>                
+					<li><a href="{{ url_for('listFilmesCad') }}"><i class="material-icons left">list</i>Listar Filmes</a></li>
+					{% else %}
+					<li><a href="{{ url_for('login') }}" >Logar</a></li>
+					{% endif %}
+				</ul>
+				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+			</div>		         
+		</nav>
+	</header>	
+	<main>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<div class="alert">
+			<ul class=flashes>
+				{% for message in messages %}
+				<li>{{ message }}</li>				      
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+		{% endwith %}
+
+		<!-- Bloco de conteudo -->
+		{% block content %}
+		{% endblock %}
+
+	</main>
+	
+	<footer class="page-footer black">    					
+		<div class="footer-copyright">
+			<div class="container">
+				© 2021 Copyright PlayFilmesFlask
+				<a class="grey-text text-lighten-4 right" href="#!">:)</a>
+			</div>
+		</div>
+	</footer>
+	
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+	
+</body>
+</html>		

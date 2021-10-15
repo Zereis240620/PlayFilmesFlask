@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;    
+ }
+ main {
+     flex: 1 0 auto;
+ }
+
+.img-responsive {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+#text{
+	font-weight: bold ;
+	font-size: 2.8em;
+	background: -webkit-linear-gradient(rgba(63,94,251,1), rgba(252,70,107,1));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+
+#pag{
+	padding-bottom: 5px;
+}
+
+#player{	
+	margin: 50px;
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+
+iframe{
+	width: 70%;
+	height: 480px;
+}
+
+@media (max-width: 600px){
+	iframe{
+		width: 100%;
+		height: 230px;
+	}
+
+}

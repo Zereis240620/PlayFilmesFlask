@@ -1,0 +1,21 @@
+	
+
+{% extends 'base.html' %}
+
+{% block title %}{{super()}}- Index {% endblock %}
+
+{% block content %}	
+
+
+<div id="player">			
+	{% if url %}
+	<iframe
+	src="{{url}}"
+	title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{% else %}
+	<iframe
+	src="https://www.youtube.com/embed/iyAfFja1uJI"
+	title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{% endif %}
+</div>
+{% endblock %}		
