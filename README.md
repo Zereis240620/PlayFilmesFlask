@@ -3,7 +3,7 @@ Requirido Python >= 3.7
 ## Comandos Para Executar Aplicação
 Instalar Pacotes Necessários
 ```
-	pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Tecnologias Usadas
@@ -14,3 +14,4 @@ Instalar Pacotes Necessários
 - [JS](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [Jquery](https://jquery.com/)
 - [Materialize](https://materializecss.com/)
+
